@@ -96,8 +96,14 @@ Os proóximos seriam:
 - Criar **painéis visuais** (Dash, Streamlit ou Power BI) para facilitar a análise das previsões.  
 - Ajustar a estratégia de previsão para suportar **horizontes mais longos** (além de 5 semanas).  
 
-Integrante Individual:
-Andreia Spinella
-Iniciante e entusiasta em tecnologia
-No momento, em transição de carreira e negócios.
+## 👩‍💻 Integrante Individual
+
+**Andreia Spinella**  
+Iniciante e entusiasta em tecnologia, atualmente em transição de carreira e negócios.  
+
+🔗 [LinkedIn](https://shre.ink/SolH) *(a atualizar)*  
+
+Atualmente estudando fundamentos de negócios (**processos, pessoas e tecnologia**).  
+Acredito que antes de implementar Inteligência Artificial é essencial compreender profundamente o funcionamento das empresas, sua **cultura organizacional** e estratégias de negócio, para então aplicar tecnologia de forma eficaz e com impacto real.
+
 
