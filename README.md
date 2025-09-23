@@ -5,7 +5,7 @@ O objetivo é prever as vendas das **5 semanas de janeiro/2023** utilizando o hi
 
 ---
 
-## 🚀 Executar no Google Colab
+##  Executar no Google Colab
 
 Clique abaixo para abrir o notebook diretamente no Colab:
 
@@ -58,9 +58,9 @@ bigdataforecast-2025/
 
 ---
 
-## 📊 Resultados
+##  Resultados
 
-### 🔎 Validação Interna (2022 / Semanas 45–52)
+###  Validação Interna (2022 / Semanas 45–52)
 - **MAE**   : 2.50  
 - **RMSE**  : 10.79  
 - **WMAPE** : 0.49  
@@ -75,7 +75,19 @@ bigdataforecast-2025/
 
 ---
 
-## 🏆 Conclusão
+### Resultados e Visualizações
+
+Durante a exploração e validação do modelo, foram gerados alguns gráficos de apoio:
+
+1. **Série temporal de vendas (2022)**  
+   Mostra a evolução semanal das quantidades vendidas, evidenciando tendência e sazonalidade.  
+
+2. **Comparação de Previsões vs Valores Reais**  
+   Gráfico de barras/linhas para as semanas de validação (sem. 45–52 de 2022), avaliando a performance do LightGBM.  
+
+Esses gráficos auxiliaram na interpretação do modelo e confirmaram a consistência da previsão.  
+
+##  Conclusão
 
 - Implementei uma solução **robusta, escalável e interpretável** para previsão de vendas semanais.  
 - Exploramos atributos de negócio relevantes (**PDV, Categoria, Premise, Zipcode**), além de variáveis temporais (lags, médias móveis, sazonalidade).  
@@ -85,7 +97,7 @@ bigdataforecast-2025/
 ---
 
 Os proóximos seriam:
-## 🚀 Próximos Passos
+##  Próximos Passos
 
 - Explorar **modelos alternativos** (XGBoost, CatBoost, Prophet híbrido) para comparação de performance.  
 - Incluir **variáveis externas** relevantes (feriados, sazonalidade especial, promoções, eventos regionais).  
@@ -94,7 +106,7 @@ Os proóximos seriam:
 - Criar **painéis visuais** (Dash, Streamlit ou Power BI) para facilitar a análise das previsões.  
 - Ajustar a estratégia de previsão para suportar **horizontes mais longos** (além de 5 semanas).  
 
-## 👩‍💻 Integrante Individual
+##  Integrante Individual
 
 **Andreia Spinella**  
 Iniciante e entusiasta em tecnologia, atualmente em transição de carreira e negócios.  
