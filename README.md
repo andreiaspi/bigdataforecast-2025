@@ -56,7 +56,27 @@ O objetivo foi prever a **quantidade semanal de vendas por PDV (ponto de venda) 
 Arquivos enviados:  
 - `submissao_final_ajustada.parquet` (1ª submissão)  
 - `submissao2.csv` e `submissao2.parquet` (2ª submissão)  
-- `submissao3.csv` e `submissao3.parquet` (3ª submissão, modelo tunado)  
+- `submissao3.csv` e `submissao3.parquet` (3ª submissão, modelo tunado)
+
+- ### 🔎 Validação interna (2022 / semanas 45–52)
+
+- **MAE**   : 2.5090  
+- **RMSE**  : 10.7950  
+- **WMAPE** : 0.4979  
+- **sMAPE** : 0.4764  
+
+---
+
+### 📊 Comparativo de Submissões
+
+| Submissão | Modelo / Estratégia                 | MAE   | RMSE   | WMAPE   | sMAPE  |
+|-----------|--------------------------------------|-------|--------|---------|--------|
+| 1         | Modelo base (LGBM simples)           | 2.51  | 19.22  | 0.4979  | 0.4034 |
+| 2         | Blend (LGBM + Naive lag-1)           | 3.86  | 32.89  | 0.7670  | 0.4052 |
+| 3         | LGBM Tunado + Features adicionais    | 2.68  | 10.91  | 0.9020* | 0.5450 |
+
+\* O valor de **WMAPE** refere-se à métrica oficial calculada pelo sistema de avaliação no ambiente da competição (ranking).
+
 
 Formato exigido pelo desafio:  
 
