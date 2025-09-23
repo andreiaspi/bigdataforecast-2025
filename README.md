@@ -129,6 +129,4 @@ pandas, numpy, lightgbm, scikit-learn
 
 O modelo atual ainda pode ser melhorado com feature engineering adicional (promoções, sazonalidade especial, eventos).
 
-Foram priorizadas soluções rápidas e escaláveis devido ao limite de tempo da competição.
-
 As submissões foram limitadas ao máximo de 1.500.000 linhas exigido pelo desafio.
