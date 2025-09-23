@@ -47,7 +47,7 @@ O objetivo foi prever a **quantidade semanal de vendas por PDV (ponto de venda) 
 ### Evolução das Submissões  
 1. **Submissão 1** → Versão inicial (baseline com lags) → `WMAPE ≈ 1.0`  
 2. **Submissão 2** → Inclusão de features adicionais e LightGBM simples → `WMAPE ≈ 0.90`  
-3. **Submissão 3** → Modelo tunado com regularização e early stopping → `WMAPE ≈ 0.90` (posição ~75 no ranking até o momento).  
+3. **Submissão 3** → Modelo tunado com regularização e early stopping → `WMAPE ≈ 0.90`   
 
 ---
 
