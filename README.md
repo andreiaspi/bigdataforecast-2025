@@ -9,9 +9,7 @@ O objetivo é prever as vendas das **5 semanas de janeiro/2023** utilizando o hi
 
 Clique abaixo para abrir o notebook diretamente no Colab:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andreiaspi/bigdataforecast-2025/blob/main/previsao_lgbm.ipynb)
-
----
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andreiaspi/bigdataforecast-2025/blob/main/forecast_lgbm_.ipynb)
 
 ## 📂 Estrutura do Repositório
 
