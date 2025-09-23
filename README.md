@@ -87,7 +87,17 @@ bigdataforecast-2025/
 ---
 
 Os proóximos seriam:
-Incluir informações externas (feriados, clima, eventos regionais).  
-- Explorar ensembles de modelos (LightGBM + Prophet + ARIMA).  
-- Ajustes mais finos de hiperparâmetros com **Optuna**.  
-- Avaliação por família de produtos e clusters de PDVs.
+## 🚀 Próximos Passos
+
+- Explorar **modelos alternativos** (XGBoost, CatBoost, Prophet híbrido) para comparação de performance.  
+- Incluir **variáveis externas** relevantes (feriados, sazonalidade especial, promoções, eventos regionais).  
+- Realizar **feature engineering avançado** (variáveis de tendência, sazonalidade mensal e anual, interações entre categorias de produtos e tipos de loja).  
+- Implementar **técnicas de hiperparâmetros automáticas** (Optuna, GridSearchCV) para refinar ainda mais o modelo.  
+- Criar **painéis visuais** (Dash, Streamlit ou Power BI) para facilitar a análise das previsões.  
+- Ajustar a estratégia de previsão para suportar **horizontes mais longos** (além de 5 semanas).  
+
+Integrante Individual:
+Andreia Spinella
+Iniciante e entusiasta em tecnologia
+No momento, em transição de carreira e negócios.
+
