@@ -1,132 +1,93 @@
-README.md
+# 📈 Forecast de Vendas – Hackathon Big Data 2025
 
-# 🏆 Hackathon Big Data 2025 – Previsão de Vendas  
-
-Este repositório contém a solução desenvolvida para o desafio de previsão de vendas no **Hackathon Big Data 2025**.  
-
-O objetivo foi prever a **quantidade semanal de vendas por PDV (ponto de venda) e SKU (produto)** para as cinco primeiras semanas de **janeiro/2023**, utilizando como base o histórico de vendas do ano de 2022.  
+Este repositório contém a solução desenvolvida para o desafio de previsão de demanda semanal por **PDV / SKU** no Hackathon Big Data 2025.  
+O objetivo é prever as vendas das **5 semanas de janeiro/2023** utilizando o histórico completo de **2022**.
 
 ---
 
-## 📂 Estrutura do Projeto  
+## 🚀 Executar no Google Colab
 
-- `notebooks/` → Contém os experimentos no Google Colab.  
-- `dados/` → Pasta de entrada (não versionada aqui).  
-- `submissoes/` → Arquivos gerados para submissão (`CSV` e `Parquet`).  
-- `README.md` → Documentação do projeto.  
+Clique abaixo para abrir o notebook diretamente no Colab:
 
----
-
-## ⚙️ Metodologia  
-
-1. **Pré-processamento**
-   - Conversão de datas em features de calendário (ano, mês, semana ISO, dia da semana, fim de mês, trimestre, semana do mês).  
-   - Criação de variáveis de **lags** (1 a 4) e **médias móveis** (3 e 8 semanas).  
-   - Feature de **semanas desde a última venda** (recência).  
-   - Enriquecimento com atributos estáveis de produtos e PDVs (`categoria`, `subcategoria`, `premise`, `zipcode`).  
-
-2. **Modelagem**
-   - Algoritmo principal: **LightGBM Regressor**, com tunagem de hiperparâmetros.  
-   - Validação temporal: treino (semanas 1–44 de 2022) e validação (semanas 45–52 de 2022).  
-   - Blend simples entre modelo e *naive baseline* (lag-1).  
-
-3. **Métricas de Avaliação**
-   - **WMAPE** (Weighted Mean Absolute Percentage Error) → métrica oficial do desafio.  
-   - Outras métricas monitoradas: **MAE**, **RMSE**, **sMAPE**.  
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/andreiaspi/bigdataforecast-2025/blob/main/previsao_lgbm.ipynb)
 
 ---
 
-## 📊 Resultados Obtidos  
+## 📂 Estrutura do Repositório
 
-### Validação interna (2022/sem. 45–52)  
-- **MAE** : 2.5090  
-- **RMSE** : 10.7950  
-- **WMAPE** : 0.4979  
-- **sMAPE** : 0.4764  
+bigdataforecast-2025/
+│
+├── notebooks/
+│ └── previsao_lgbm.ipynb # notebook principal (Colab)
+│
+├── submissões/
+│ ├── submissao1.parquet
+│ ├── submissao2.parquet
+│ └── submissao3.parquet
+│
+├── README.md
 
-### Evolução das Submissões  
-1. **Submissão 1** → Versão inicial (baseline com lags) → `WMAPE ≈ 1.0`  
-2. **Submissão 2** → Inclusão de features adicionais e LightGBM simples → `WMAPE ≈ 0.90`  
-3. **Submissão 3** → Modelo tunado com regularização e early stopping → `WMAPE ≈ 0.90`   
 
 ---
 
-## 📂 Submissões  
+## ⚙️ Metodologia
 
-Arquivos enviados:  
-- `submissao_final_ajustada.parquet` (1ª submissão)  
-- `submissao2.csv` e `submissao2.parquet` (2ª submissão)  
-- `submissao3.csv` e `submissao3.parquet` (3ª submissão, modelo tunado)
+1. **Exploração e Limpeza de Dados (EDA)**  
+   - Identificação de outliers, vendas negativas e dados duplicados.  
+   - Criação de base semanal agregada por `(ano, semana, pdv, produto)`.  
 
-- ### 🔎 Validação interna (2022 / semanas 45–52)
+2. **Feature Engineering**  
+   - Lags de 1 a 4 semanas.  
+   - Médias móveis (3 e 8 semanas).  
+   - Tendência de curto prazo (`roll3 - roll8`).  
+   - Recência (semanas desde a última venda).  
+   - Atributos estáveis de produto e PDV (categoria, subcategoria, premise, categoria_pdv, zipcode).  
+   - Flag sazonal de dezembro (`is_december`).  
 
-- **MAE**   : 2.5090  
-- **RMSE**  : 10.7950  
-- **WMAPE** : 0.4979  
-- **sMAPE** : 0.4764  
+3. **Modelagem**  
+   - Modelo principal: **LightGBM Regressor**.  
+   - Treino em 2022 (semanas 1–44), validação em 2022 (semanas 45–52).  
+   - Tunagem de hiperparâmetros (`num_leaves`, `min_data_in_leaf`, `learning_rate`, etc.).  
+
+4. **Validação**  
+   - Métrica oficial: **WMAPE**.  
+   - Métricas adicionais: **MAE, RMSE, sMAPE** para maior robustez.  
+
+5. **Previsão para Janeiro/2023**  
+   - Estratégia iterativa semana a semana (1–5).  
+   - Estado inicial baseado na semana 52 de 2022.  
+   - Controle do limite de 1.500.000 linhas na submissão.  
 
 ---
 
-### 📊 Comparativo de Submissões
+## 📊 Resultados
 
-| Submissão | Modelo / Estratégia                 | MAE   | RMSE   | WMAPE   | sMAPE  |
-|-----------|--------------------------------------|-------|--------|---------|--------|
-| 1         | Modelo base (LGBM simples)           | 2.51  | 19.22  | 0.4979  | 0.4034 |
-| 2         | Blend (LGBM + Naive lag-1)           | 3.86  | 32.89  | 0.7670  | 0.4052 |
-| 3         | LGBM Tunado + Features adicionais    | 2.68  | 10.91  | 0.9020* | 0.5450 |
+### 🔎 Validação Interna (2022 / Semanas 45–52)
+- **MAE**   : 2.50  
+- **RMSE**  : 10.79  
+- **WMAPE** : 0.49  
+- **sMAPE** : 0.47%  
 
-\* O valor de **WMAPE** refere-se à métrica oficial calculada pelo sistema de avaliação no ambiente da competição (ranking).
+### 📈 Evolução das Submissões
+| Submissão | Modelo / Estratégia                 | WMAPE (Leaderboard) |
+|-----------|--------------------------------------|----------------------|
+| 1         | LGBM simples (baseline)             | ~1.00               |
+| 2         | Blend LGBM + Naive (lag-1)          | ~0.90               |
+| 3         | LGBM Tunado + Features adicionais   | ~0.90               |
 
+---
 
-Formato exigido pelo desafio:  
+## 🏆 Conclusão
 
-```csv
-semana ; pdv ; produto ; quantidade
-1 ; 1023 ; 123 ; 120
-2 ; 1045 ; 234 ; 85
+- Implementei uma solução **robusta, escalável e interpretável** para previsão de vendas semanais.  
+- Exploramos atributos de negócio relevantes (**PDV, Categoria, Premise, Zipcode**), além de variáveis temporais (lags, médias móveis, sazonalidade).  
+- Acompanhamos a evolução das submissões, melhorando a performance em relação ao baseline.  
+- O modelo final (LGBM tunado) obteve **WMAPE competitivo** e está pronto para ser replicado em outros períodos.  
 
-📈 Visualizações
+---
 
-Foram gerados gráficos auxiliares para análise exploratória (EDA):
-
-Séries semanais de vendas agregadas.
-
-Distribuição por categorias de produtos.
-
-Comparação entre previsões do modelo e baseline (lag-1).
-
-🚀 Execução
-
-Clone este repositório:
-
-git clone https://github.com/andreiaspi/bigdataforecast-2025.git
-cd bigdataforecast-2025
-
-
-Instale as dependências principais:
-
-pip install pandas numpy lightgbm scikit-learn pyarrow
-
-
-Execute o notebook principal no Google Colab:
-
-/notebooks/forecast_lgbm.ipynb
-
-O output final será salvo em:
-
-/submissoes/submissao3.csv
-/submissoes/submissao3.parquet
-
-👤 Equipe
-
-Participação individual: Andreia Spinella
-
-Projeto desenvolvido no Google Colab, com Python:
-
-pandas, numpy, lightgbm, scikit-learn
-
-📝 Observações
-
-O modelo atual ainda pode ser melhorado com feature engineering adicional (promoções, sazonalidade especial, eventos).
-
-As submissões foram limitadas ao máximo de 1.500.000 linhas exigido pelo desafio.
+Os proóximos seriam:
+Incluir informações externas (feriados, clima, eventos regionais).  
+- Explorar ensembles de modelos (LightGBM + Prophet + ARIMA).  
+- Ajustes mais finos de hiperparâmetros com **Optuna**.  
+- Avaliação por família de produtos e clusters de PDVs.
