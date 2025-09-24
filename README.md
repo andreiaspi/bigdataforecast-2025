@@ -25,6 +25,10 @@ bigdataforecast-2025/
 │
 ├── README.md
 
+# 🔎 Descrição rápida
+- **notebooks/previsao_lgbm.ipynb** → pipeline completo: EDA, features, modelagem (LightGBM), validação, submissão.  
+- **submissões/** → arquivos no formato oficial (`semana;pdv;produto;quantidade`, UTF-8).  
+- **data/** → arquivos originais (não versionados). 
 
 ---
 
@@ -90,8 +94,8 @@ Esses gráficos auxiliaram na interpretação do modelo e confirmaram a consist�
 ##  Conclusão
 
 - Implementei uma solução **robusta, escalável e interpretável** para previsão de vendas semanais.  
-- Exploramos atributos de negócio relevantes (**PDV, Categoria, Premise, Zipcode**), além de variáveis temporais (lags, médias móveis, sazonalidade).  
-- Acompanhamos a evolução das submissões, melhorando a performance em relação ao baseline.  
+- Explorando  atributos de negócio relevantes (**PDV, Categoria, Premise, Zipcode**), além de variáveis temporais (lags, médias móveis, sazonalidade).  
+- Acompanhando  a evolução das submissões, melhorando a performance em relação ao baseline.  
 - O modelo final (LGBM tunado) obteve **WMAPE competitivo** e está pronto para ser replicado em outros períodos.  
 
 ---
