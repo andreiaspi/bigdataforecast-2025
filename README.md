@@ -25,12 +25,61 @@ bigdataforecast-2025/
 │
 ├── README.md
 
-# 🔎 Descrição rápida
+# Descrição rápida
 - **notebooks/previsao_lgbm.ipynb** → pipeline completo: EDA, features, modelagem (LightGBM), validação, submissão.  
 - **submissões/** → arquivos no formato oficial (`semana;pdv;produto;quantidade`, UTF-8).  
 - **data/** → arquivos originais (não versionados). 
 
----
+---## Como Executar
+
+### 1. Requisitos
+- Python 3.10+  
+- Instale as bibliotecas necessárias:
+  ```bash
+  pip install pandas numpy lightgbm scikit-learn pyarrow
+
+### 2.Dados
+
+Os arquivos originais não estão versionados no GitHub (por tamanho).
+Coloque-os dentro da pasta data/:
+
+produtos.parquet
+
+pdvs.parquet
+
+transacoes_2022.parquet
+
+Caso utilize Google Drive + Colab, ajuste os caminhos de leitura no notebook.
+
+### 3. Notebook
+
+Abra no Google Colab clicando no ícone
+
+
+#Ou rode localmente:
+
+### 4. Saída
+
+Após executar todo o pipeline, os arquivos de submissão serão gerados na pasta submissões/:
+
+submissao3.csv
+
+submissao3.parquet
+
+Formato exigido:
+
+semana;pdv;produto;quantidade
+1;1023;123;120
+2;1045;234;85
+3;1023;456;110
+
+
+semana: 1 a 5 (janeiro/2023)
+
+pdv, produto: inteiros
+
+quantidade: inteiro, arredondado, não negativo
+jupyter notebook notebooks/previsao_lgbm.ipynb
 
 ## ⚙️ Metodologia
 
